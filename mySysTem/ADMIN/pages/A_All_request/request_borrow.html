@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Request borrow</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- End layout styles -->
+     <link rel="shortcut icon" href="../../assets/images/logo.png" />
+
+
+  </head>
+ 
+  <style type="text/css">
+
+
+  .form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  margin-top: 10px;
+  
+}
+
+ input, select {
+  margin-bottom: 5px;
+
+}
+label{
+margin-top: 10px;
+}
+
+/* Add this CSS to your stylesheet or in a style tag in your HTML file */
+
+.modal-content {
+    width: 100%;
+}
+
+.table_MODAL {
+    display: table;
+    width: 100%;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #ddd; /* Optional: Add a border between rows */
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin: 0;
+}
+
+.modal-buttons {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #ddd; /* Optional: Add a border above the buttons */
+}
+
+/* Add this CSS to your stylesheet or in a style tag in your HTML file */
+
+#accept,
+#cancel,.edit-button  {
+    margin-left: 8px;
+    background-color: #4CAF50; /* Green color for Accept */
+    color: white; /* White text color for Accept */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#cancel {
+    background-color: #f44336; /* Red color for Cancel */
+}
+
+#viewRequestBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#viewRequestBtn:hover {
+    background-color: #45a049;
+}
+
+
+#viewRequestBtn {
+    width: 300px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#viewRequestBtn:hover {
+    background-color: #45a049;
+}
+
+
+  </style>
+ 
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+       <div class="text-center navbar-brand-wrapper d-flex align-items-left justify-content-left">
+          <img src="../../assets/images/logo.png" style="width: 50px; height:50px;
+          margin-left: 20px;
+          margin-top: 5px;">
+        </div>
+       <div class="navbar-menu-wrapper d-flex align-items-stretch">
+              <h4 style=" height:50px;
+          margin-left: 20px;
+          margin-top: 20px;
+          color: black;">SHS IN SAN NICHOLAS III, BACOOR CITY</h4>
+       
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" >
+          <ul class="nav" style="background-color:#8d8d8d;">
+           
+             <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <span class="menu-title" style="color: black;">Dashboard</span>
+              </a>
+            </li>
+         
+             <li class="nav-item">
+              <a class="nav-link" href="../../pages/A_user/user.html">
+                <span class="menu-title" style="color: black;">User</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/Books/books.html">
+                <span class="menu-title" style="color: black;">Books</span>
+               
+              </a>
+            </li>
+    
+             <li class="nav-item" style="background-color: white;">
+              <a class="nav-link" href="../../pages/A_All_request/request_borrow.html">
+                <span class="menu-title" style="color: black;">All request</span>
+          
+              </a>
+            </li>
+
+
+
+
+
+          </ul>
+        </nav>
+  
+<div class="main-panel" style="margin-left: 10px; margin-right: 10px;">
+
+    <button id="viewRequestBtn">View request accepted</button>
+    
+    <table class="table table-dark" id="mytable" style="width: 100%;">
+        <thead>
+            <th>id</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody id="tbl"> 
+            <!-- Your table body content goes here -->
+        </tbody>
+    </table>
+
+</div>
+
+
+
+        <!-- Button trigger modal -->
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Request details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table_MODAL">
+                   
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Date:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Date">loading....</h3>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">category:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="category">loading....</h3>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">title:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="title">loading....</h3>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">topic:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="topic">loading....</h3>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Status:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Status">loading....</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <!-- Print Button -->
+                <button id="accept">accept</button>
+                <button id="cancel" onclick="closeDetailsModal()">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    fetchUsers();
+});
+
+
+var selectedUserId;
+
+
+function fetchUsers() {
+    // AJAX request to fetch data from the user table
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_borrow.php', true);
+
+    // Set the content type header for JSON response
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayUsers(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+
+    // Send the AJAX request
+    xhr.send();
+}
+
+function displayUsers(borrow) {
+    var tableBody = document.getElementById('tbl');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Initialize a counter variable
+    var counter = 1;
+
+    for (var i = 0; i < borrow.length; i++) {
+        var row = tableBody.insertRow(i);
+        var cellId = row.insertCell(0);
+        var cellcategory = row.insertCell(1);
+        var celltittle = row.insertCell(2);
+        var celltopic = row.insertCell(3);
+        var cellStatus = row.insertCell(4);
+        var cellAction = row.insertCell(5);
+
+        // Use the counter variable for row numbers
+        
+        cellId.innerHTML = borrow[i].id;
+        cellcategory.innerHTML = borrow[i].category;
+        celltittle.innerHTML = borrow[i].title;
+         celltopic.innerHTML = borrow[i].topic;
+        cellStatus.innerHTML = borrow[i].status;
+
+    if (borrow[i].status === 'pending') {
+        cellStatus.style.color = 'red';
+    } 
+
+
+        cellAction.innerHTML = '<button class="edit-button" onclick="viewDetails(' + borrow[i].id + ')">View</button>';
+    }
+}
+
+
+function viewDetails(borrow_id) {
+   
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_borrow_details.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Send the reservation ID to the PHP script
+    xhr.send('borrow_id=' + encodeURIComponent(borrow_id));
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayDetailsModal(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+}
+
+
+function displayDetailsModal(borrow_data) {
+    // Check if the modal element exists
+    var modal = document.getElementById('exampleModalCenter');
+    if (!modal) {
+        console.error('Modal element not found');
+        return;
+    }
+
+ 
+document.getElementById("Date").textContent = borrow_data.borrowed_date;
+document.getElementById("category").textContent = borrow_data.category;
+document.getElementById("title").textContent = borrow_data.title;
+document.getElementById("topic").textContent = borrow_data.topic;
+
+var statusElement = document.getElementById("Status");
+statusElement.textContent = borrow_data.status;
+
+// Check if the status is "pending" and set the text color to red
+if (borrow_data.status.toLowerCase() === "pending") {
+    statusElement.style.color = "red";
+}
+
+    document.getElementById('accept').addEventListener('click', function() {
+        if (borrow_data.id) {
+            // Send AJAX request to update the user
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'update_borrow.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.send('borrowed_id=' + encodeURIComponent(borrow_data.id));
+
+            // Handle the response from the PHP script
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        try {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.status === 'success') {
+                               
+                                alert(response.message);  
+                                location.reload();  
+                            } else {
+                                // Update failed, handle as needed
+                                alert('Error updating user: ' + response.message);
+                            }
+                        } catch (e) {
+                            // Invalid JSON response
+                            console.error('Error parsing JSON response:', e);
+                            console.log('Raw response:', xhr.responseText); // Log the raw response for debugging
+                            alert('Invalid JSON response from server');
+                        }
+                    } else {
+                        // Request failed, handle as needed
+                        alert('Request failed with status: ' + xhr.status);
+                    }
+                }
+            };
+        } else {
+            // No user selected, handle as needed
+            alert('No user selected.');
+        }
+    });
+
+    // Display the modal using jQuery
+    $(modal).modal('show');
+}
+
+function closeDetailsModal() {
+    // Close the modal using jQuery
+    $('#exampleModalCenter').modal('hide');
+}
+
+
+
+
+  document.getElementById('viewRequestBtn').addEventListener('click', function() {
+        // Open another HTML file
+        window.location.href = '../Request_accepted/request_accepted.html';
+    });
+
+</script>
+
+
+
+
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>

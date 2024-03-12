@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>User</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- End layout styles -->
+     <link rel="shortcut icon" href="../../assets/images/CHMSU.png" />
+
+ <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+  </head>
+   <style type="text/css">
+/* Style for the modal body */
+.modal-body {
+    padding: 20px;
+}
+
+/* Style for the labels */
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Label text color */
+    width: 80px; /* Fixed width for labels */
+}
+
+/* Style for the user details (h3 elements) */
+h3 {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #555; 
+    /* Text color for user details */
+}
+
+/* Style for the accept button */
+#acceptButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the accept button on hover */
+#acceptButton:hover {
+    background-color: darkred;
+}
+/* CSS for the Edit button */
+.edit-button {
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 8px 12px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover state for the Edit button */
+.edit-button:hover {
+    background-color: #2980b9; /* Darker background color on hover */
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.table_MODAL {
+    display: table;
+    width: 100%;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #ddd; /* Optional: Add a border between rows */
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin: 0;
+}
+
+.modal-buttons {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #ddd; /* Optional: Add a border above the buttons */
+}
+
+  </style>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+       <div class="text-center navbar-brand-wrapper d-flex align-items-left justify-content-left">
+          <img src="../../assets/images/CHMSU.png" style="width: 50px; height:50px;
+          margin-left: 20px;
+          margin-top: 5px;">
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+              <h4 style=" height:50px;
+          margin-left: 20px;
+          margin-top: 20px;
+          color: black;">CITY OF BSCOOR SENIOR HIGH SCHOOL SANICOLAS PORTAL</h4>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" >
+          <ul class="nav" style="background-color:#8d8d8d;">
+           
+             <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <span class="menu-title" style="color: black;">Dashboard</span>
+              </a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/A_user/user.html">
+                <span class="menu-title" style="color: black;">User</span>
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/Books/books.html">
+                <span class="menu-title" style="color: black;">Books</span>
+               
+              </a>
+            </li>
+    
+             <li class="nav-item">
+              <a class="nav-link" href="../../pages/A_All_request/request.html">
+                <span class="menu-title" style="color: black;">All request</span>
+          
+              </a>
+            </li>
+
+
+
+          </ul>
+        </nav>
+  
+        <div class="main-panel" style="margin-left: 10px; margin-right: 10px;">
+        <input type="text" id="searchInput" placeholder="Search by name" style="margin-bottom: 20px; width: 300px;">  
+    <table class="table table-dark" id="mytable">
+       <thead>
+          <th>id</th>
+           <th>name</th>
+           <th>email</th>
+           <th>contact</th>
+            <th>status</th>
+                      <th>Action</th>
+       </thead>
+         <tbody id="tbl"> 
+     </tbody>
+     </table>
+
+
+        </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table_MODAL">
+                    <!-- Row 1 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Name:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="userName">NAME</h3>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Email:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="userEmail">EMAIL</h3>
+                        </div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">track/Strand:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="userContact">CONTACT</h3>
+                        </div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">ID:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="userID">ID</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Status:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Status">ID</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="acceptButton">Accept This User</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    fetchUsers();
+});
+
+
+var selectedUserId;
+
+
+function fetchUsers() {
+    // AJAX request to fetch data from the user table
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_users.php', true);
+
+    // Set the content type header for JSON response
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayUsers(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+
+    // Send the AJAX request
+    xhr.send();
+}
+
+function displayUsers(users) {
+    var tableBody = document.getElementById('tbl');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Initialize a counter variable
+    var counter = 1;
+
+    for (var i = 0; i < users.length; i++) {
+        var row = tableBody.insertRow(i);
+        var cellId = row.insertCell(0);
+        var cellName = row.insertCell(1);
+        var cellEmail = row.insertCell(2);
+        var cellContact = row.insertCell(3);
+        var cellStatus = row.insertCell(4);
+        var cellAction = row.insertCell(5);
+
+        // Use the counter variable for row numbers
+        
+        cellId.innerHTML = users[i].id;
+        cellName.innerHTML = users[i].username;
+        cellEmail.innerHTML = users[i].email;
+        cellContact.innerHTML = users[i].trackStrand;
+        cellStatus.innerHTML = users[i].status;
+
+    if (users[i].status === 'pending') {
+        cellStatus.style.color = 'red';
+    } 
+
+        // Add action buttons or other UI elements as needed
+        // For example, a button to edit or delete the user
+        cellAction.innerHTML = '<button class="edit-button" onclick="viewDetails(' + users[i].id + ')">View</button>';
+    }
+}
+
+
+function viewDetails(userId) {
+      selectedUserId = userId;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_user_details.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Send the reservation ID to the PHP script
+    xhr.send('userId=' + encodeURIComponent(userId));
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayDetailsModal(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+}
+
+
+function displayDetailsModal(user_data) {
+     // Check if the modal element exists
+    var modal = document.getElementById('exampleModalCenter');
+    if (!modal) {
+        console.error('Modal element not found');
+        return;
+    }
+
+    document.getElementById("userName").textContent=user_data.username;
+    document.getElementById("userEmail").textContent=user_data.email;
+    document.getElementById("userContact").textContent=user_data.trackStrand;
+    document.getElementById("userID").textContent=user_data.id;
+    document.getElementById("Status").textContent=user_data.status;
+    
+    var statusElement = document.getElementById("Status");
+statusElement.textContent = user_data.status;
+
+if (user_data.status.toLowerCase() === "pending") {
+    statusElement.style.color = "red";
+}
+
+document.getElementById('acceptButton').addEventListener('click', function() {
+    console.log(user_data.id)
+    if (user_data.id) {
+        // Send AJAX request to update the user
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'update_user.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+     
+        xhr.send('userId=' + encodeURIComponent(user_data.id));
+
+        // Handle the response from the PHP script
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    try {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.status === 'success') {
+                            // Update successful, handle as needed
+                            alert(response.message);
+                            
+                         location.reload();
+                        } else {
+                            // Update failed, handle as needed
+                            alert('Error updating user: ' + response.message);
+                        }
+                    } catch (e) {
+                        // Invalid JSON response
+                        console.error('Error parsing JSON response:', e);
+                        console.log('Raw response:', xhr.responseText); // Log the raw response for debugging
+                        alert('Invalid JSON response from server');
+                    }
+                } else {
+                    // Request failed, handle as needed
+                    alert('Request failed with status: ' + xhr.status);
+                }
+            }
+        };
+    } else {
+        // No user selected, handle as needed
+        alert('No user selected.');
+    }
+});
+
+
+     // Display the modal
+    $(modal).modal('show');
+}
+function closeDetailsModal() {
+    // Close the modal
+    var modal = document.getElementById('exampleModalCenter');
+    modal.style.display = 'none';
+}
+
+
+</script>
+
+
+
+
+
+
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>

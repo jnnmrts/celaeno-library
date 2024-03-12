@@ -1,0 +1,561 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="logo.png" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+  <body>
+    <div class="container-scroller">
+  
+        <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-left justify-content-left ">
+          <img src="logo.png" style="width: 50px; height:50px; margin-left: 20px;
+          margin-top: 5px;">
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <div class="search-field d-none d-md-block">
+            <form class="d-flex align-items-center h-100" action="#">
+            </form>
+          </div>
+          <h4 class="portal-label">SHS IN SAN NICHOLAS III, BACOOR CITY</h4>
+          <ul class="navbar-nav navbar-nav-right">     
+      <li >
+<div class="nav-profile-text">
+    <label style="color: black; margin-right: 5px;">User:</label>
+    <label id="id">loading...</label>
+    <a class="nav-link" href="#" onclick="logout()">
+        <img src="assets/images/logout.PNG" alt="logout" class="menu-icon">
+        <span class="menu-title">Logout</span>
+    </a>
+</div>
+     </li>
+
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+
+
+          <style>
+
+.navbar-menu-wrapper {
+    justify-content: center; /* Centers children horizontally in a flex container */
+}
+
+.portal-label {
+    margin-top: 15px;
+    position: absolute; /* Position it absolutely within its parent */
+    left: 50%; /* Move it to the center */
+    transform: translateX(-50%); /* Shift it back by half its own width */
+    white-space: nowrap; /* Prevent text from wrapping */
+    color: black;
+}
+
+
+
+            #myRequestDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#myRequestDropdown:hover .dropdown-content {
+    display: block;
+}
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    .box {
+      width: 70%;
+      margin: 20px;
+      padding: 10px;
+      border-radius: 15px;
+       background-color: rgba(0, 0, 0, 0.3);
+
+
+    }
+    .menu-icon {
+    width: 20px;  /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-right: 10px; /* Add some space between the icon and the text */
+}
+.nav-profile-text {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+.nav-profile-text label {
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    margin-right: 5px; /* Spacing between icon and text */
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('login_back.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Cover the entire area of the div */
+    background-position: center; /* Center the image in the div */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    width: 100%;
+    height: 100%;
+}
+
+.main-panel {
+    margin-top: 100px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    background-color: rgba(167, 180, 169, 0.5);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    border-radius: 5px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+     margin-right: 5px;
+    width: 300px;
+    height: 50px;
+}
+.search-bar label[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+     height: 50px;
+     margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+     height: 50px;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+.books-list {
+    background-color: white;
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.book-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd; /* for a line between items */
+    padding: 10px;
+}
+
+.book-cover {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+    margin-right: 20px;
+    border: 1px solid #ddd; /* Adds a light border around the cover */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 3.2); /* Adds a subtle shadow for depth */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    display: block;
+    background-color: white; /* In case the image is transparent */
+}
+
+
+.book-title {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-left: 50px;
+    padding: 10px 20px;
+}
+.book-availability{
+      font-size: 1.2em;
+    margin-top: 10px;
+    margin-left: 50px;
+    padding: 10px 20px;  
+}
+
+
+
+.availability-btn {
+    margin-top: 10px;
+    margin-left: 70px;
+    padding: 10px 20px; /* Adjust padding for size */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Adjust font size as needed */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.availability-btn:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+}
+
+
+  </style>
+
+
+    <div class="main-panel">
+
+        <div class="search-bar">
+            <select id="categorySelect">
+        <option value="" disabled selected>Select a Category</option>
+        <option value="Textbooks">Textbooks</option>
+        <option value="Reference">Reference</option>
+        <option value="Science">Science</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Literature">Literature</option>
+        <option value="History">History</option>
+        <option value="Language Arts">Language Arts</option>
+        <option value="Social Studies">Social Studies</option>
+        <option value="Art">Art</option>
+        <option value="Physical Education">Physical Education</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Music">Music</option>
+        <option value="Foreign Language">Foreign Language</option>
+        <option value="Health">Health</option>
+        <option value="Drama">Drama</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Business">Business</option>
+        <option value="Economics">Economics</option>
+        <option value="Environmental Studies">Environmental Studies</option>
+        <option value="Geography">Geography</option>
+        <option value="Political Science">Political Science</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Anthropology">Anthropology</option>
+        <option value="Religious Studies">Religious Studies</option>
+        <option value="Technology">Technology</option>
+        <option value="Cooking">Cooking</option>
+        <option value="Gardening">Gardening</option>
+        <option value="Home Economics">Home Economics</option>
+    </select>
+            <input type="text" id="searchInput" placeholder="Search by topic...">
+            <button onclick="location.href='myrequest.html';">My request</button>
+
+        </div>
+        <div id="booksList" class="books-list">
+            <!-- Books will be listed here -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+
+
+     var myID = localStorage.getItem("myID");
+ localStorage.setItem("myID",myID);
+     var myName = localStorage.getItem("myName");
+ localStorage.setItem("myName",myName);
+
+
+ // Get the label element
+var labelElement = document.getElementById("id");
+// Update the text
+labelElement.textContent =myName;
+
+
+
+       function logout() {
+    window.location.href = "../index.html";
+
+
+}
+ 
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadBooks(); // Load all books when the page loads
+
+    var categorySelect = document.getElementById('categorySelect');
+    var searchInput = document.getElementById('searchInput');
+
+    // Event listener for category selection
+    categorySelect.addEventListener('change', function() {
+        searchBooks(); // Call searchBooks when category changes
+    });
+
+    // Event listener for search input
+    searchInput.addEventListener('keyup', function() {
+        searchBooks(); // Call searchBooks on keyup in search input
+    });
+});
+
+function loadBooks() {
+    searchBooks('all', ''); // Load all books initially
+}
+
+function searchBooks(category = '', searchText = '') {
+    if (category === 'all') {
+        // If called from loadBooks, reset both category and searchText
+        category = document.getElementById('categorySelect').value = '';
+        searchText = document.getElementById('searchInput').value = '';
+    } else {
+        // Otherwise, use current values
+        category = document.getElementById('categorySelect').value;
+        searchText = document.getElementById('searchInput').value;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', `fetch_books.php?category=${encodeURIComponent(category)}&searchText=${encodeURIComponent(searchText)}`, true);
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var books = JSON.parse(xhr.responseText);
+            displayBooks(books);
+        } else {
+            console.error('Error fetching data');
+        }
+    };
+
+    xhr.send();
+}
+
+function displayBooks(books) {
+    var booksList = document.getElementById('booksList');
+    booksList.innerHTML = '';
+
+    books.forEach(function(book) {
+        var bookItem = document.createElement('div');
+        bookItem.className = 'book-item';
+
+        var buttonText = book.availability === "Available" ? "Borrow" : "Waitlist";
+        var availabilityColor = book.availability === "Available" ? "green" : "red";
+
+        bookItem.innerHTML = `
+            <img src="../ADMIN/pages/Books/uploads/${book.image}" alt="Cover" class="book-cover">
+            <div class="book-details">
+                <div class="book-title">Topic: ${book.topic}</div>
+                <div class="book-title">Book #: ${book.id}</div>
+                <div class="book-availability" style="color: ${availabilityColor};">Status: ${book.availability}</div>
+                <div class="book-availability">Copies: ${book.Copies}</div>
+                <button class="availability-btn" data-book-id="${book.id}" data-button-text="${buttonText}">${buttonText}</button>
+            </div>
+        `;
+        booksList.appendChild(bookItem);
+
+        // Add click event listener to the "Borrow" button
+        var availabilityBtn = bookItem.querySelector('.availability-btn');
+        availabilityBtn.addEventListener('click', function() {
+            var bookId = this.getAttribute('data-book-id');
+            var buttonText = this.getAttribute('data-button-text');
+            
+            if (buttonText === "Borrow") {
+                fetchBookDetails(bookId);
+            } else {
+                // Handle "Waitlist" button click if needed
+                // You can add your own logic for "Waitlist" button
+            }
+        });
+    });
+}
+
+function fetchBookDetails(bookId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'getBookDetails.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Send the reservation ID to the PHP script
+   xhr.send('bookId=' + encodeURIComponent(bookId) + '&myId=' + encodeURIComponent(myID));
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        var bookData = response.data;
+
+                        // Log specific properties
+                        console.log('DDC:', bookData.DDC);
+                        console.log('ISBN:', bookData.ISBN);
+                        console.log('Author:', bookData.author);
+                        console.log('Category:', bookData.category);
+                        console.log('ID:', bookData.id);
+                        console.log('Image:', bookData.image);
+                        console.log('Language:', bookData.language);
+                        console.log('Publication Date:', bookData.publication_date);
+                        console.log('Publisher:', bookData.publisher);
+                        console.log('Sheets:', bookData.sheets);
+                        console.log('Title:', bookData.title);
+                        console.log('Topic:', bookData.topic);
+    // Call the insert function
+    insert(bookData);
+updateCopies(bookData.id);
+
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+}
+
+
+
+function insert(bookData) {
+    // Send data to the server using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'insert_book.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Prepare data to send
+  var formData = 'DDC=' + encodeURIComponent(bookData.DDC) +
+    '&ISBN=' + encodeURIComponent(bookData.ISBN) +
+    '&Author=' + encodeURIComponent(bookData.author) +
+    '&Category=' + encodeURIComponent(bookData.category) +
+    '&book_id=' + encodeURIComponent(bookData.id) +
+    '&image=' + encodeURIComponent(bookData.image) +
+    '&language=' + encodeURIComponent(bookData.language) +
+    '&publication_date=' + encodeURIComponent(bookData.publication_date) +
+    '&publisher=' + encodeURIComponent(bookData.publisher) +
+    '&sheets=' + encodeURIComponent(bookData.sheets) +
+    '&title=' + encodeURIComponent(bookData.title) +
+    '&topic=' + encodeURIComponent(bookData.topic) +
+    '&Myid=' + encodeURIComponent(myID)+
+    '&myName=' + encodeURIComponent(myName);
+
+    // Set up callback function for when the request completes
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // The request was successful, you can handle the response here if needed
+            console.log('Insertion successful:', xhr.responseText);
+            handleSuccess(bookData);
+            updateCopies(bookData.id);
+
+        } else {
+            // The request failed
+            console.error('Error inserting data:', xhr.status, xhr.statusText);
+            alert('Error inserting data: ' + xhr.statusText);
+        }
+    };
+
+    // Send the request with the form data
+    xhr.send(formData);
+}
+  
+
+
+// Function to update the "Copies" column
+function updateCopies(bookId) {
+    // Send an AJAX request to update the 'Copies' column
+    var updateCopiesXHR = new XMLHttpRequest();
+    updateCopiesXHR.open('POST', 'update_copies.php', true);
+    updateCopiesXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    updateCopiesXHR.onload = function () {
+        if (updateCopiesXHR.status === 200) {
+            // The update was successful, you can handle the response here if needed
+            console.log('Copies updated successfully:'+ updateCopiesXHR.responseText);
+                                    // Show SweetAlert success popup
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Borrow Request sent successfully.',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            // If user clicks OK, refresh the page
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+        } else {
+            // The update failed
+            console.error('Error updating copies:', updateCopiesXHR.status, updateCopiesXHR.statusText);
+            alert('Error updating copies: ' + updateCopiesXHR.statusText);
+        }
+    };
+    updateCopiesXHR.onerror = function () {
+        console.error('Request failed');
+    };
+
+    // Send the bookId to the server to update the "Copies" column
+    updateCopiesXHR.send('bookId=' + encodeURIComponent(bookId));
+}
+
+    </script>
+
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

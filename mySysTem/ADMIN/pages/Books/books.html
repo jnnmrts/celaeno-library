@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Books</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- End layout styles -->
+     <link rel="shortcut icon" href="logo.png" />
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  </head>
+   <style type="text/css">
+/* Style for the modal body */
+.modal-body {
+    padding: 20px;
+}
+
+/* Style for the labels */
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Label text color */
+    width: 80px; /* Fixed width for labels */
+}
+
+/* Style for the user details (h3 elements) */
+h3 {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #555; 
+    /* Text color for user details */
+}
+
+/* Style for the accept button */
+#acceptButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Style for the accept button on hover */
+#acceptButton:hover {
+    background-color: green;
+}
+/* CSS for the Edit button */
+.edit-button {
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 8px 12px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover state for the Edit button */
+.edit-button:hover {
+    background-color: #2980b9; /* Darker background color on hover */
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.table_MODAL {
+    display: table;
+    width: 100%;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #ddd; /* Optional: Add a border between rows */
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin: 0;
+}
+
+.modal-buttons {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #ddd; /* Optional: Add a border above the buttons */
+}
+
+#addBookModal {
+    background: url('login_back.jpg') center center no-repeat;
+    background-size: cover; /* Adjust as needed */
+}
+
+    #addBookModal .modal-header {
+        background-color: #343a40; /* Change the header background color as needed */
+        color: #ffffff; /* Change the header text color as needed */
+        border-bottom: 1px solid #dee2e6; /* Add a border at the bottom of the header */
+    }
+
+    #addBookModal .modal-title {
+        font-weight: bold; /* Make the modal title bold */
+    }
+
+    #addBookModal .modal-body {
+        padding: 20px; /* Add padding to the modal body */
+    }
+
+    #addBookModal .modal-footer {
+        border-top: 1px solid #dee2e6; /* Add a border at the top of the footer */
+        padding: 15px; /* Add padding to the modal footer */
+    }
+
+    #addBookModal label {
+        display: block; /* Display labels as block elements */
+        margin-bottom: 5px; /* Add some space below each label */
+    }
+
+    #addBookModal input {
+        width: 100%; /* Make input fields take up 100% width */
+        padding: 8px; /* Add padding to input fields */
+        margin-bottom: 15px; /* Add some space below each input field */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+    #addBookModal button {
+        background-color: #007bff; /* Change the button background color as needed */
+        color: #ffffff; /* Change the button text color as needed */
+        padding: 10px 15px; /* Add padding to the button */
+        border: none; /* Remove the button border */
+        border-radius: 5px; /* Add border-radius to round the button corners */
+        cursor: pointer;
+    }
+
+    #addBookModal button:hover {
+        background-color: #0056b3; /* Change the button background color on hover */
+    }
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+       <div class="text-center navbar-brand-wrapper d-flex align-items-left justify-content-left">
+          <img src="logo.png" style="width: 50px; height:50px;
+          margin-left: 20px;
+          margin-top: 5px;">
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+              <h4 style=" height:50px;
+          margin-left: 20px;
+          margin-top: 20px;
+          color: black;">SHS IN SAN NICHOLAS III, BACOOR CITY</h4>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" >
+          <ul class="nav" style="background-color:#8d8d8d;">
+           
+             <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <span class="menu-title" style="color: black;">Dashboard</span>
+              </a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/A_user/user.html">
+                <span class="menu-title" style="color: black;">User</span>
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/Books/books.html">
+                <span class="menu-title" style="color: black;">Books</span>
+               
+              </a>
+            </li>
+    
+             <li class="nav-item">
+              <a class="nav-link" href="../../pages/A_All_request/request_borrow.html">
+                <span class="menu-title" style="color: black;">All request</span>
+          
+              </a>
+            </li>
+
+
+
+          </ul>
+        </nav>
+  
+        <div class="main-panel" style="margin-left: 10px; margin-right: 10px;">
+        
+<div style="display: flex; align-items: baseline;">
+
+<a>
+    <button style="margin-bottom: 20px; margin-left: 20px; background-color: #3498db; color: #fff; padding: 10px 15px; border: none; border-radius: 5px;"data-toggle="modal" data-target="#addBookModal">ADD BOOK</button>
+</a>
+
+
+</div>
+
+    <table class="table table-dark" id="mytable">
+       <thead>
+          <th>id</th>
+           <th>Books name</th>
+           <th>Author</th>
+           <th>ISBN</th>
+            <th>Availability</th>
+                      <th>Action</th>
+       </thead>
+         <tbody id="tbl"> 
+     </tbody>
+     </table>
+
+
+        </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table_MODAL">
+                    <!-- Row 1 -->
+                        <div class="row">
+                        <div class="cell">
+                            <label class="description">Book name:</label>
+                        </div>
+                        <div class="cell">
+                            <input class="value" id="Books_name" readonly></input>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Author:</label>
+                        </div>
+                        <div class="cell">
+                            <input class="value" id="Author" readonly></input>
+                        </div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">ISBN:</label>
+                        </div>
+                        <div class="cell">
+                            <input class="value" id="ISBN" readonly></input>
+                        </div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Copies:</label>
+                        </div>
+                        <div class="cell">
+                            <input class="value" id="Copies" ></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Availability:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Availability">ID</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updateCopiesButton">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Add Book Modal -->
+    <div class="modal" id="addBookModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Book</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="addBookForm">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+
+                         <label for="topic">Topic:</label>
+                        <input type="text" id="topic" name="topic" required>
+
+
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" required>
+
+                        <label for="ISBN">ISBN:</label>
+                        <input type="number" id="ISBN" name="ISBN" required>
+
+<label for="Language">Language:</label>
+<select id="Language" name="Language" required>
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+    <option value="German">German</option>
+    <option value="Italian">Italian</option>
+    <option value="Chinese">Chinese</option>
+    <option value="Japanese">Japanese</option>
+    <option value="Korean">Korean</option>
+    <option value="Arabic">Arabic</option>
+    <option value="Russian">Russian</option>
+    <option value="Portuguese">Portuguese</option>
+    <option value="Hindi">Hindi</option>
+    <option value="Bengali">Bengali</option>
+    <option value="Urdu">Urdu</option>
+    <!-- Add more options for other languages as needed -->
+</select>
+
+                        <label for="Publisher">Publisher:</label>
+                        <input type="text" id="Publisher" name="Publisher" required>
+
+                        <label for="date">Publication date:</label>
+                        <input type="date" id="date" name="date" required>
+
+<label for="Category">Category:</label>
+<select id="Category" name="Category" required onchange="setDDC()">
+    <option value="Textbooks">Textbooks</option>
+    <option value="Reference">Reference</option>
+    <option value="Science">Science</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Literature">Literature</option>
+    <option value="History">History</option>
+    <option value="Language Arts">Language Arts</option>
+    <option value="Social Studies">Social Studies</option>
+    <option value="Art">Art</option>
+    <option value="Physical Education">Physical Education</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Music">Music</option>
+    <option value="Foreign Language">Foreign Language</option>
+    <option value="Health">Health</option>
+    <option value="Drama">Drama</option>
+    <option value="Philosophy">Philosophy</option>
+    <option value="Psychology">Psychology</option>
+    <option value="Business">Business</option>
+    <option value="Economics">Economics</option>
+    <option value="Environmental Studies">Environmental Studies</option>
+    <option value="Geography">Geography</option>
+    <option value="Political Science">Political Science</option>
+    <option value="Sociology">Sociology</option>
+    <option value="Anthropology">Anthropology</option>
+    <option value="Religious Studies">Religious Studies</option>
+    <option value="Technology">Technology</option>
+    <option value="Cooking">Cooking</option>
+    <option value="Gardening">Gardening</option>
+    <option value="Home Economics">Home Economics</option>
+    <!-- Add more options for other school book categories as needed -->
+</select>
+
+<label for="DDC">DDC:</label>
+<input type="text" id="DDC" name="DDC" required readonly>
+
+<label for="Copies">Copies:</label>
+<input type="number" id="Copies" name="Copies">
+
+
+        <label for="Image">Image cover:</label>
+        <input type="file" id="Image" name="Image" accept="image/*" required>
+
+        <label for="sheets">Work sheets:</label>
+        <input type="file" id="sheets" name="sheets" accept="sheets/*" required>
+
+
+ 
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    fetchbooks();
+});
+
+
+var selectedUserId;
+
+
+function fetchbooks() {
+    // AJAX request to fetch data from the user table
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_books.php', true);
+
+    // Set the content type header for JSON response
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayBooks(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+
+    // Send the AJAX request
+    xhr.send();
+}
+
+function displayBooks(books) {
+    var tableBody = document.getElementById('tbl');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Initialize a counter variable
+    var counter = 1;
+
+    for (var i = 0; i < books.length; i++) {
+        var row = tableBody.insertRow(i);
+        var cellId = row.insertCell(0);
+        var cellName = row.insertCell(1);
+        var cellAuthor = row.insertCell(2);
+        var cellISBN = row.insertCell(3);
+        var cellStatus = row.insertCell(4);
+        var cellAction = row.insertCell(5);
+ 
+        // Use the counter variable for row numbers
+        
+        cellId.innerHTML = books[i].id;
+        cellName.innerHTML = books[i].title;
+        cellAuthor.innerHTML = books[i].author;
+        cellISBN.innerHTML = books[i].ISBN;
+        cellStatus.innerHTML = books[i].availability;
+
+        // Add action buttons or other UI elements as needed
+        // For example, a button to edit or delete the user
+        cellAction.innerHTML = '<button class="edit-button" onclick="viewDetails(' + books[i].id + ')">View</button>';
+    }
+}
+
+
+function viewDetails(books_id) {
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_books_details.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Send the reservation ID to the PHP script
+    xhr.send('books_id=' + encodeURIComponent(books_id));
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayDetailsModal(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+}
+
+
+function displayDetailsModal(book_data) {
+     // Check if the modal element exists
+    var modal = document.getElementById('exampleModalCenter');
+    if (!modal) {
+        console.error('Modal element not found');
+        return;
+    }
+
+document.getElementById("Books_name").value = book_data.title;
+document.getElementById("Author").value = book_data.author;
+document.getElementById("ISBN").value = book_data.ISBN;
+document.getElementById("Copies").value = book_data.Copies;
+
+// Assuming book_data.availability contains the availability status
+var availabilityElement = document.getElementById("Availability");
+
+// Check if the availability is "Available"
+if (book_data.availability === "Available") {
+    // Set the text color to green
+    availabilityElement.style.color = "green";
+} else {
+    // Set the text color to red
+    availabilityElement.style.color = "red";
+}
+
+// Update the text content
+availabilityElement.textContent = book_data.availability;
+
+document.getElementById('updateCopiesButton').addEventListener('click', function() {
+    // Get the book ID and new copies value
+    var bookId = book_data.id;
+    var newCopiesValue = document.getElementById('Copies').value; // Replace 'Author' with the actual ID of your input
+
+    // Send an AJAX request to update the 'Copies' column
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'update_copies.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+               Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Update successfully.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        // If user clicks OK, refresh the page
+        if (result.isConfirmed) {
+            location.reload();
+        }
+    });
+        } else {
+            console.error('Error updating copies:', xhr.responseText);
+        }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send('bookId=' + encodeURIComponent(bookId) + '&newCopies=' + encodeURIComponent(newCopiesValue));
+});
+
+
+     // Display the modal
+    $(modal).modal('show');
+}
+
+// Assuming you have a button with the ID "updateCopiesButton"
+
+
+
+
+
+function closeDetailsModal() {
+    // Close the modal
+    var modal = document.getElementById('exampleModalCenter');
+    modal.style.display = 'none';
+}
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+    $("#addBookForm").submit(function(event){
+        // Prevent the form from submitting in the traditional way
+        event.preventDefault();
+
+        // Get form data
+        var formData = new FormData(this);
+
+        // Make AJAX request
+        $.ajax({
+            url: "insert_books.php",  // Replace with your PHP script file
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                // Handle the response from the server (if needed)
+                console.log(response);
+
+                // Check if the response indicates success
+                if (response === "Data inserted successfully") {
+                    // Show SweetAlert success popup
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: response,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        // If user clicks OK, refresh the page
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    // If there's an error or different response, handle it accordingly
+                    // You can add additional logic or display an error message
+                    console.error('Error:', response);
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+function setDDC() {
+    var categorySelect = document.getElementById("Category");
+    var ddcInput = document.getElementById("DDC");
+
+    // Map category values to DDC values
+    var ddcMapping = {
+        "Textbooks": "370",
+        "Reference": "030",
+        "Science": "500",
+        "Mathematics": "510",
+        "Literature": "800",
+        "History": "900",
+        "Language Arts": "420",
+        "Social Studies": "300",
+        "Art": "700",
+        "Physical Education": "790",
+        "Computer Science": "000",
+        "Music": "780",
+        "Foreign Language": "400",
+        "Health": "610",
+        "Drama": "800",
+        "Philosophy": "100",
+        "Psychology": "150",
+        "Business": "650",
+        "Economics": "330",
+        "Environmental Studies": "300",
+        "Geography": "900",
+        "Political Science": "320",
+        "Sociology": "300",
+        "Anthropology": "300",
+        "Religious Studies": "200",
+        "Technology": "600",
+        "Cooking": "641",
+        "Gardening": "635",
+        "Home Economics": "640"
+        // Add more mappings as needed
+    };
+
+    // Set the value of the DDC input based on the selected category
+    ddcInput.value = ddcMapping[categorySelect.value];
+}
+
+
+</script>
+
+
+
+
+
+
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>

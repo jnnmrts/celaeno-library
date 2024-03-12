@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+   <link rel="stylesheet" type="text/css" href="loading.css">
+
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+  </head>
+  <body>
+    <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="search-field d-none d-md-block">
+            <form class="d-flex align-items-center h-100" action="#">
+            </form>
+          </div>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="nav-profile-img">
+                  <img src="../../assets/images/faces/face1.jpg" alt="image">
+                  <span class="availability-status online"></span>
+                </div>
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black">ADMIN</p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+              </div>
+            </li>
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+        
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                  <img src="../../assets/images/faces/face1.jpg" alt="profile">
+                  <span class="login-status online"></span>
+                  <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2">ADMIN</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <span class="menu-title">Dashboard</span>
+              
+              </a>
+            </li>
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/forms/basic_elements.html">
+                <span class="menu-title">Forms</span>
+   
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/charts/chartjs.html">
+                <span class="menu-title">Charts</span>
+        
+              </a>
+            </li>
+                      <style type="text/css">
+.dropdown {
+  display: none;
+}
+li:hover .dropdown {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown a:hover {
+  background-color: #f1f1f1;
+}
+              </style>
+        <li class="nav-item">         
+  <span class="menu-title">Student</span>
+  <span class="dropdown">
+
+    <a class="nav-link" href="../../pages/first_yr/first_yr.html">
+                <span class="menu-title">First year</span>
+              </a>
+   
+      <a class="nav-link" href="../../pages/second_yr/second_yr.html">
+                <span class="menu-title">Second year</span>
+              </a>
+   
+      <a class="nav-link" href="../../pages/third_yr/third_yr.html">
+                <span class="menu-title">Third year</span>
+              </a>
+
+                 <a class="nav-link" href="../../pages/fourth_yr/fourth_yr.html">
+                <span class="menu-title">Fourth year</span>
+              </a>
+  </span>
+</li>
+           <li class="nav-item">
+              <a class="nav-link" href="../../pages/attendance/attendance.html">
+                <span class="menu-title">attendance</span>
+         
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> First year tables</h3>
+              <nav aria-label="breadcrumb">
+              </nav>
+            </div>
+            <div class="row">
+                   <div class="loading" id="loading"><div class="loading-spinner"></div></div>
+       
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                      <ol class="breadcrumb">
+        
+                      <li style="margin-right: 15px;"><button id="back_btn">←</button>
+                       </li>  
+
+                  <li style="margin-right: 5px;"> <h4 class="card-title">Section:</h4></li>
+                  
+                </ol>
+
+                    <table class="table table-striped" id="tablestd">
+  <thead>
+       <th>number</th>
+      <th>Subject</th>
+      <th>1 grading</th>
+      <th>2 grading</th>
+        <th>3 grading</th>
+          <th>4 grading</th>
+            <th>average</th>
+              <th>status</th>
+  </thead>
+  <tbody id="section1_tbl">
+  </tbody>
+                   </table>     
+                  </div>
+                </div>
+              </div>
+    
+<script type="module">
+  
+
+ const back_btn = document.getElementById("back_btn");
+ back_btn.addEventListener('click',back);
+
+ function back(){
+   window.location.href = '../../pages/first_yr/first_yr.html';
+ }
+</script> 
+
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+       
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/hoverable-collapse.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+ 
+  </body>
+</html>

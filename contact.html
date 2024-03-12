@@ -1,0 +1,257 @@
+<!-- 
+THEME: Small Apps | Bootstrap App Landing Template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+
+HOMEPAGE: https://themefisher.com/products/small-apps-free-app-landing-page-template/
+DEMO: https://demo.themefisher.com/small-apps/
+GITHUB: https://github.com/themefisher/Small-Apps-Bootstrap-App-Landing-Template
+
+Get HUGO Version : https://themefisher.com/products/small-apps-hugo-app-landing-theme/
+
+WEBSITE: https://themefisher.com
+TWITTER: https://twitter.com/themefisher
+FACEBOOK: https://www.facebook.com/themefisher
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Add this line in the head section of your HTML -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>CONTACT</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Bootstrap App Landing Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Small Apps Template v1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+  
+  <!-- PLUGINS CSS STYLE -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
+
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" style="height: 50px; width: 50px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="ti-menu"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav ml-auto">
+     <li class="nav-item @@about">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+       
+        </li>
+    
+        <li class="nav-item @@about">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item @@contact">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--================================
+=            Page Title            =
+=================================-->
+
+<section class="section page-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 m-auto">
+				<!-- Page Title -->
+				<h1>Contact Us</h1>
+				<!-- Page Description -->
+				<p>Visit the official website: Look for the official website of SHS IN SAN NICHOLAS III, BACOOR CITY, if available. The website may provide contact details such as phone numbers, email addresses, or a contact form.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--====  End of Page Title  ====-->
+
+
+<!--=====================================
+=            Address and Map            =
+======================================-->
+<section class="address">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 align-self-center">
+				<div class="block">
+					<div class="address-block text-center mb-5">
+						<div class="icon">
+							<i class="ti-mobile"></i>
+						</div>
+            <div class="details">
+              <h3>QR CODE</h3>
+              <h3><img src="images/gr.png"></img></h3>
+            </div>
+						<div class="details">
+							<h3>CONTACT NUMBER</h3>
+							<h3>6346 4027842</h3>
+						</div>
+					</div>
+					<div class="address-block text-center">
+						<div class="icon">
+							<i class="ti-map-alt"></i>
+						</div>
+						<div class="details">
+							<h3> City of Bacoor Senior High School - San Nicolas Address Green Valley, San Nicolas III, 4102 Bacoor. </h3>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-7 mt-5 mt-lg-0">
+				
+<!-- Your existing map container -->
+<div id="map" style="width: 100%; height: 500px; position: relative;"></div>
+<!-- Add an image element with absolute positioning -->
+<img src="images/map.png" alt="Your Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--====  End of Address and Map  ====-->
+<section class="contact-form section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="mb-5 text-center">Drop us a mail</h2>
+			</div>
+			<div class="col-12">
+				<form action="">
+					<div class="row">
+						<!-- Name -->
+						<div class="col-md-6 mb-2">
+							<input class="form-control main" type="text" placeholder="Name" required>
+						</div>
+						<!-- Email -->
+						<div class="col-md-6 mb-2">
+							<input class="form-control main" type="email" placeholder="Your Email Address" required>
+						</div>
+						<!-- subject -->
+						<div class="col-md-12 mb-2">
+							<input class="form-control main" type="text" placeholder="Subject" required>
+						</div>
+						<!-- Message -->
+						<div class="col-md-12 mb-2">
+							<textarea class="form-control main" name="message" rows="10" placeholder="Your Message"></textarea>
+						</div>
+						<!-- Submit Button -->
+						<div class="col-12 text-right">
+							<button class="btn btn-main-md">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to check if input fields are not empty
+        function validateForm() {
+            var name = document.querySelector('input[placeholder="Name"]').value;
+            var email = document.querySelector('input[placeholder="Your Email Address"]').value;
+            var subject = document.querySelector('input[placeholder="Subject"]').value;
+            var message = document.querySelector('textarea[placeholder="Your Message"]').value;
+
+            if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || message.trim() === '') {
+                // If any of the fields is empty, show an error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Please fill in all the required fields.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+                return false;
+            }
+
+            // If all fields are filled, show success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Mail sent successfully.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                // If user clicks OK, refresh the page
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
+
+            // Prevent the form from submitting
+            return false;
+        }
+
+        // Add event listener to the form
+        var form = document.querySelector('.contact-form form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            validateForm(); // Call the function to validate the form
+        });
+    });
+</script>
+
+
+  <!-- To Top -->
+  <div class="scroll-top-to">
+    <i class="ti-angle-up"></i>
+  </div>
+  
+
+
+  <!-- JAVASCRIPTS -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
+  <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+  <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
+  <script src="plugins/aos/aos.js"></script>
+  <!-- google map -->
+ <script src="plugins/google-map/gmap.js"></script>
+  
+  <script src="js/script.js"></script>
+</body>
+
+</html>

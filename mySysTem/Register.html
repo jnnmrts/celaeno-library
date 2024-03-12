@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LOGIN</title>
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ 
+  <style>
+ 
+html {
+ height: 100hv;
+    background-image: url('images/login_back.jpg'); /* Replace 'your-image.jpg' with the path to your image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid whitesmoke; 
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 20px;
+    padding: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-row div {
+            width: 48%;
+        }
+
+        .form-row div.full-width {
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #login {
+            font-weight: bold;
+        }
+
+
+ 
+  </style>
+
+
+</head>
+<body>
+  
+<div class="form">
+    
+ <div>
+      <label for="name">name</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name">
+
+        <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password">
+</div>
+
+
+<div>
+            <label for="Username">Username</label>
+    <input type="name" id="Username" name="Username" placeholder="Enter your Username">
+
+        <label for="StudentId">Student ID</label>
+    <input type="text" id="StudentId" name="StudentId" placeholder="Enter your Student ID">
+
+</div>
+
+
+<div>
+           <label for="Email">Email</label>
+    <input type="Email" id="Email" name="Email" placeholder="Enter your Email">
+
+       <label for="Track/Strand">Track/Strand</label>
+    <input type="text" id="Track/Strand" name="Track/Strand" placeholder="Enter your Track/Strand">
+
+</div>
+
+
+
+       <a> <button type="submit" onclick="registerUser()">Register</button></a>
+         <a class="nav-link" href="index.html" style="margin-left: 8px; margin-top: 20px;"><label  id="login" style="color: blue;">Login</label></a>
+
+</div>
+
+
+<script type="text/javascript">
+    
+function registerUser() {
+    // Get values from input fields
+    var name = document.getElementById('name').value;
+    var password = document.getElementById('password').value;
+    var username = document.getElementById('Username').value;
+    var studentId = document.getElementById('StudentId').value;
+    var email = document.getElementById('Email').value;
+    var trackStrand = document.getElementById('Track/Strand').value;
+
+    // You can add more validation here if needed
+
+    // Send data to PHP script using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'register.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+            // Display the response from the server
+            alert(xhr.responseText);
+
+            // Clear the input values
+            document.getElementById('name').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('Username').value = '';
+            document.getElementById('StudentId').value = '';
+            document.getElementById('Email').value = '';
+            document.getElementById('Track/Strand').value = '';
+
+            // Display the approval message
+            alert("Please await the administrator's approval for your registration request.");
+
+            // Open another HTML file
+            window.location.href = 'index.html';
+        } else {
+            // Handle the error if needed
+            console.error('Error:', xhr.status, xhr.statusText);
+        }
+    }
+};
+
+
+    // Send the data as a POST request
+    xhr.send('name=' + name + '&password=' + password + '&username=' + username +
+             '&studentId=' + studentId + '&email=' + email + '&trackStrand=' + trackStrand);
+}
+
+        
+</script>
+
+
+</body>
+</html>

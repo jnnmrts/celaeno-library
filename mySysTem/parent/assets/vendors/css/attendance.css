@@ -1,0 +1,49 @@
+/* Basic styles */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  background: #ccc;
+
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+th {
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  table.responsive-table thead {
+    display: none;
+  }
+
+  table.responsive-table tbody {
+    display: block;
+      margin-left: 10px;
+  margin-right: 10px;
+  }
+
+  table.responsive-table tbody tr {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  table.responsive-table tbody td {
+    text-align: right;
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+  }
+
+
+  table.responsive-table tbody td:last-child input[type=checkbox] {
+    display: block;
+    margin: 0 auto;
+  }
+}

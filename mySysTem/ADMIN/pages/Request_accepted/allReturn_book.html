@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>All returned</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+     <link rel="shortcut icon" href="assets/images/logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+   <style type="text/css">
+
+.navbar-menu-wrapper {
+    justify-content: center; /* Centers children horizontally in a flex container */
+}
+
+.portal-label {
+    margin-top: 15px;
+    position: absolute; /* Position it absolutely within its parent */
+    left: 50%; /* Move it to the center */
+    transform: translateX(-50%); /* Shift it back by half its own width */
+    white-space: nowrap; /* Prevent text from wrapping */
+    color: black;
+}
+
+    
+/* Style for the modal body */
+.modal-body {
+    padding: 20px;
+}
+
+/* Style for the labels */
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Label text color */
+    width: 80px; /* Fixed width for labels */
+}
+
+/* Style for the user details (h3 elements) */
+h3 {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #555; 
+    /* Text color for user details */
+}
+
+/* Style for the accept button */
+#acceptButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the accept button on hover */
+#acceptButton:hover {
+    background-color: darkred;
+}
+/* CSS for the Edit button */
+.edit-button {
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 8px 12px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover state for the Edit button */
+.edit-button:hover {
+    background-color: #2980b9; /* Darker background color on hover */
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.table_MODAL {
+    display: table;
+    width: 100%;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #ddd; /* Optional: Add a border between rows */
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin: 0;
+}
+
+.modal-buttons {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #ddd; /* Optional: Add a border above the buttons */
+}
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            /* Add additional styling as needed */
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+.hidden {
+    display: none;
+}
+
+
+   #searchInput {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+        transition: border-color 0.3s; /* Add a smooth transition effect for border color */
+    }
+
+    #searchInput:hover {
+        border-color: GREEN; /* Change border color on hover */
+    }
+
+  </style>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+       <div class="text-center navbar-brand-wrapper d-flex align-items-left justify-content-left">
+          <img src="assets/images/logo.png" style="width: 50px; height:50px;
+          margin-left: 20px;
+          margin-top: 5px;">
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+ <h4 class="portal-label">SHS IN SAN NICHOLAS III, BACOOR CITY</h4>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+  
+        <div class="main-panel" style="margin-left: 10px; margin-right: 10px; width: 100%;">
+             <input type="text" id="searchInput" placeholder="Search by Name">
+    <table class="table table-dark" id="mytable" style="width: 100%;">
+       <thead>
+          <th>id</th>
+           <th>Name</th>
+           <th>Tittle</th>
+           <th>Topic</th>
+            <th>Status</th>
+                      <th>Action</th>
+       </thead>
+         <tbody id="tbl"> 
+     </tbody>
+     </table>
+
+
+        </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">User</h5>
+          <!-- Add an ID to the close button for easier selection -->
+<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton">
+    <span aria-hidden="true">&times;</span>
+</button>
+
+            </div>
+            <div class="modal-body">
+                <div class="table_MODAL">
+                    <!-- Row 1 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Author:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Author">loading</h3>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Bublisher:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Publisher">loading</h3>
+                        </div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Topic:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="topic">loading</h3>
+                        </div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Book ID:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="BookID">loading</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell">
+                            <label class="description">Date:</label>
+                        </div>
+                        <div class="cell">
+                            <h3 class="value" id="Date">loading</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+<script type="text/javascript">
+
+     var myID = localStorage.getItem("myID");
+ localStorage.setItem("myID",myID);
+     var myName = localStorage.getItem("myName");
+ localStorage.setItem("myName",myName);
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchRequest();
+
+    // Get the search input element
+    var searchInput = document.getElementById('searchInput');
+
+    // Add an event listener for the input event to trigger the search
+    searchInput.addEventListener('input', function () {
+        var searchValue = searchInput.value.trim().toLowerCase();
+        filterRequests(searchValue);
+    });
+});
+
+var originalData; // Store the original data fetched from the server
+
+// Fetch requests for the current user
+function fetchRequest() {
+    // Get the user ID from localStorage
+    var myID = localStorage.getItem("myID");
+
+    // AJAX request to fetch data
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'allReturn_book.php?myID=' + encodeURIComponent(myID), true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        originalData = response.data; // Store the original data
+                        displayRequests(originalData);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+
+    // Send the AJAX request
+    xhr.send();
+}
+
+function displayRequests(details) {
+    var tableBody = document.getElementById('tbl');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    for (var i = 0; i < details.length; i++) {
+        var row = tableBody.insertRow(i);
+        var cellId = row.insertCell(0);
+        var cellName = row.insertCell(1);
+        var cellTitle = row.insertCell(2);
+        var cellTopic = row.insertCell(3);
+        var cellStatus = row.insertCell(4);
+        var cellAction = row.insertCell(5);
+
+        cellId.innerHTML = details[i].id;
+        cellName.innerHTML = details[i].name;
+        cellTitle.innerHTML = details[i].title;
+        cellTopic.innerHTML = details[i].topic;
+        cellStatus.innerHTML = details[i].status;
+
+        if (details[i].status === 'pending') {
+            cellStatus.style.color = 'red';
+        }
+
+        cellAction.innerHTML = '<button class="edit-button" onclick="viewDetails(' + details[i].id + ')">View</button>';
+    }
+}
+
+function filterRequests(searchValue) {
+    var filteredData = originalData.filter(function (item) {
+        return item.name.toLowerCase().includes(searchValue);
+    });
+
+    displayRequests(filteredData);
+}
+
+
+function viewDetails(ID) {
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'fetch_request_details.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Send the reservation ID to the PHP script
+    xhr.send('id=' + encodeURIComponent(ID));
+
+    // Handle the response from the PHP script
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        displayDetailsModal(response.data);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    console.error('Error parsing JSON response:', e);
+                    alert('Invalid JSON response from server');
+                }
+            } else {
+                alert('Request failed with status: ' + xhr.status);
+            }
+        }
+    };
+}
+
+
+function displayDetailsModal(user_data) {
+     // Check if the modal element exists
+    var modal = document.getElementById('exampleModalCenter');
+    if (!modal) {
+        console.error('Modal element not found');
+        return;
+    }
+
+    document.getElementById("Author").textContent=user_data.author;
+    document.getElementById("Publisher").textContent=user_data.publisher;
+    document.getElementById("topic").textContent=user_data.topic;
+    document.getElementById("BookID").textContent=user_data.book_id;
+    document.getElementById("Date").textContent=user_data.borrowed_date;
+
+     // Display the modal
+    $(modal).modal('show');
+}
+
+
+
+
+// JavaScript function to close the modal and reload the page
+function closeAndReload() {
+    // Close the modal
+    var modal = document.getElementById('exampleModalCenter');
+    $(modal).modal('hide'); // Using jQuery to close Bootstrap modal
+
+    // Reload the page
+    location.reload();
+}
+
+// Add an event listener to the close button
+document.getElementById('closeModalButton').addEventListener('click', closeAndReload);
+
+
+
+
+</script>
+
+
+
+
+
+
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>
